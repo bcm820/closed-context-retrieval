@@ -1,0 +1,52 @@
+llama:
+  n_ctx: 4096
+  # rope_freq_base: 20000.0
+  # rope_freq_scale: 0.83
+  n_batch: 512
+  n_gpu_layers: 33
+  n_threads: 12
+  last_n_tokens_size: 64
+  seed: -1
+  f16_kv: true
+  logits_all: false
+  vocab_only: false
+  use_mmap: true
+  use_mlock: true
+  embedding: false
+  verbose: true
+
+llama_cache:
+  enabled: true
+  cache_type: ram
+  cache_size: 2147483648
+
+llama_completions:
+  max_tokens: 512
+  # Adjust the randomness of the generated text (from 0 to 2.0)
+  # Temperature is a hyperparameter that controls the randomness of the generated text.
+  # It affects the probability distribution of the model's output tokens.
+  # A higher temperature (e.g., 1.5) makes the output more random and creative,
+  # while a lower temperature (e.g., 0.5) makes the output more focused, deterministic, and conservative.
+  temperature: 0.8
+  # Limit the next token selection to a subset of tokens with a cumulative probability above a threshold P.
+  # Top-p (nucleus) sampling selects the next token from a subset of tokens that have a cumulative probability of at least p.
+  # This method balances diversity and quality by considering the probabilities of tokens and number of tokens to sample from.
+  top_p: 0.5
+  # Limit the next token selection to the K most probable tokens.
+  # Top-k sampling selects the next token only from the top k most likely tokens predicted by the model.
+  # It helps reduce the risk of generating low-probability or nonsensical tokens, but may also limit the diversity of output.
+  top_k: 20
+  # Range of -2.0 to 2.0; penalizes tokens by lowering the chances a token is selected the more times it has been used.
+  frequency_penalty: .8
+  # Range of -2.0 to 2.0; penalizes tokens by lowering the chances a token is selected
+  # if it is present at all (less severe than frequency_penalty).
+  presence_penalty: .8
+  # Use mirostat sampling (override top-k sampling).
+  mirostat_mode: 2
+  stop:
+  - 'USER:'
+  - 'SYSTEM:'
+  - 'ASSISTANT:'
+  # - '### Instruction'
+
+embeddings_path: 'data/models/embeddings/e5-large-v2'

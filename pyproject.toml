@@ -1,0 +1,32 @@
+[project]
+name = "jarvis"
+version = "0.0.1"
+description = ""
+authors = [
+    {name = "Brian Mendoza", email = "bcmendoza@gmail.com"},
+]
+dependencies = [
+    "llama-cpp-python>=0.1.77",
+    "discord-py>=2.3.1",
+    "sentence-transformers>=2.2.2",
+    "redis>=4.6.0",
+    "hiredis>=2.2.3",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.1",
+    "tiktoken>=0.4.0",
+]
+
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[tool.pdm.dev-dependencies]
+ingest = [
+    "requests>=2.31.0",
+    "bs4>=0.0.1",
+    "sh>=2.0.4",
+]
+
+[tool.pdm.scripts]
+start = "python3 src"
+setup = "python3 scripts/setup.py"
+clean = "python3 scripts/clean.py"
