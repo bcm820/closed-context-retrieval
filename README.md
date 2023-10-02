@@ -1,10 +1,10 @@
-Install pdm
+Install pdm for managing dependencies
 
 ```
 curl -sSL https://pdm.fming.dev/dev/install-pdm.py | python -
 ```
 
-Install llama-cpp-python with GPU acceleration (CuBLAS is best for Nvidia GPUs)
+Install llama-cpp-python with GPU acceleration (CuBLAS is for Nvidia GPUs)
 
 ```
 export CMAKE_ARGS="-DLLAMA_CUBLAS=on"
@@ -28,17 +28,19 @@ pdm run setup
 Download LLM
 
 ```
-cd data/models/llama && wget https://huggingface.co/TheBloke/WizardLM-13B-V1.2-GGML/resolve/main/wizardlm-13b-v1.2.ggmlv3.q2_K.bin
+cd data/models
+wget https://huggingface.co/TheBloke/airoboros-l2-13B-2.2.1-GGUF/resolve/main/airoboros-l2-13b-2.2.1.Q6_K.gguf
 ```
 
 Download embedding model
 
 ```
-git clone https://huggingface.co/intfloat/e5-large-v2 data/models/embeddings
+git clone https://huggingface.co/intfloat/e5-large-v2 data/embeddings
 ```
 
 Run
 
 ```
+docker compose up -d
 pdm run start
 ```
